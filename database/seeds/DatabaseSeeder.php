@@ -11,9 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         factory(\App\Publisher::class,3)->create()->each(function ($publisher) {
             factory(\App\Magazine::class,10)->create(['publisher_id' => $publisher->id]);
         });
+
+        factory(\App\User::class)->create();
     }
 }

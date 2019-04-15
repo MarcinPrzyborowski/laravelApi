@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Publisher;
+use App\Repository\Publisher\PublisherRepository;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
@@ -12,8 +12,18 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
  */
 class Publishers
 {
+    /**
+     * @var PublisherRepository
+     */
+    private $publisherRepository;
+
+    public function __construct(PublisherRepository $publisherRepository)
+    {
+        $this->publisherRepository = $publisherRepository;
+    }
+
     public function getAll()
     {
-        return new ResourceCollection(Publisher::paginate());
+        return new ResourceCollection($this->publisherRepository->paginate());
     }
 }

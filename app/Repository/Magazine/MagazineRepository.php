@@ -2,19 +2,34 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Magazine;
+namespace App\Repository\Magazine;
 
 use App\Magazine;
-use App\Models\Magazine\DTO\SearchDTO;
 
 /**
  * @author Marcin Przyborowski <hiprzyborowski@gmail.com>
  */
-class Searcher
+class MagazineRepository
 {
-    public function paginate(SearchDTO $searchDTO): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function findOne(int $id)
+    {
+        return Magazine::find($id);
+    }
+
+    /**
+     * @param SearchDTO $searchDTO
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function paginateBySearchDTO(SearchDTO $searchDTO)
     {
         $query = Magazine::query();
+
         if ($searchDTO->name) {
             $query->where('name', 'like', '%'.$searchDTO->name.'%');
         }

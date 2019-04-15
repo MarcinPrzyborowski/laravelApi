@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Middleware\RequestJson;
-use App\Magazine;
-use App\Models\Magazine\DTO\SearchDTO;
-use App\Models\Magazine\Searcher;
+use App\Repository\Magazine\MagazineRepository;
+use App\Repository\Magazine\SearchDTO;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
@@ -18,25 +17,26 @@ use Illuminate\Http\Response;
 class Magazines
 {
     /**
-     * @var Searcher
+     * @var MagazineRepository
      */
-    private $searcher;
+    private $magazineRepository;
 
-    public function __construct(Searcher $searcher)
+    public function __construct(MagazineRepository $magazineRepository)
     {
-        $this->searcher = $searcher;
+        $this->magazineRepository = $magazineRepository;
     }
 
     public function search(Request $request)
     {
         $searchDTO = new SearchDTO($request->get(RequestJson::REQUEST_JSON));
+        $result = $this->magazineRepository->paginateBySearchDTO($searchDTO);
 
-        return new ResourceCollection($this->searcher->paginate($searchDTO));
+        return new ResourceCollection($result);
     }
 
-    public function get($id)
+    public function get(int $id)
     {
-        $magazine = Magazine::find($id);
+        $magazine = $this->magazineRepository->findOne($id);
 
         return $magazine ?? response('', Response::HTTP_NOT_FOUND);
     }

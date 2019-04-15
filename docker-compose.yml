@@ -30,3 +30,7 @@ services:
     depends_on:
       - php
       - db
+      - redis
+
+  redis:
+    image: redis:3.2.10-alpine

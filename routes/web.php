@@ -15,8 +15,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/publishers', 'Api\Publishers@getAll');
-
-Route::get('/magazines/{id}', 'Api\Magazines@get');
-
-Route::any('/magazines/search', 'Api\Magazines@search')->middleware('request.json');

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Magazine\DTO;
+namespace App\Repository\Magazine;
 
 /**
  * @author Marcin Przyborowski <hiprzyborowski@gmail.com>
