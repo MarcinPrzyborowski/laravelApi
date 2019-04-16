@@ -28,11 +28,15 @@ After running the docker compose setup you should run the commands below to set 
 docker-compose exec php composer install
 ```
 
+### Create .env file
+```
+    cp .env.dist .env
+```
+
 ### Generating key and optimizing app
 ```
 # needed for generating application app key 
 docker-compose exec php ./artisan key:generate
-docker-compose exec php ./artisan optimize
 ```
 
 ### Running laravel commands in docker
