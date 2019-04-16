@@ -1,16 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 
-class Publisher extends Model
+class Magazine extends Model
 {
     use Cachable;
 
-    public function publishers()
+    public function magazine()
     {
-        return $this->hasMany('App\Magazine');
+        $this->belongsTo('App\Publisher');
     }
 }

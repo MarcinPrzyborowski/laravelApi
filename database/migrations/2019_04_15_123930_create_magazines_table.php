@@ -1,15 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMagazinesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -20,7 +18,7 @@ class CreateMagazinesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('magazines', function($table) {
+        Schema::table('magazines', function ($table) {
             $table
                 ->foreign('publisher_id')
                 ->references('id')
@@ -30,8 +28,6 @@ class CreateMagazinesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

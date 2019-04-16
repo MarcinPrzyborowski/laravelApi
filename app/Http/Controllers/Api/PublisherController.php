@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 /**
  * @author Marcin Przyborowski <hiprzyborowski@gmail.com>
  */
-class Publishers
+class PublisherController
 {
     /**
      * @var PublisherRepository
@@ -22,6 +22,9 @@ class Publishers
         $this->publisherRepository = $publisherRepository;
     }
 
+    /**
+     * @return ResourceCollection
+     */
     public function getAll()
     {
         return new ResourceCollection($this->publisherRepository->paginate());

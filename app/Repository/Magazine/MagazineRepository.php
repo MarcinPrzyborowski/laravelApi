@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository\Magazine;
 
-use App\Magazine;
+use App\Models\Magazine;
 
 /**
  * @author Marcin Przyborowski <hiprzyborowski@gmail.com>

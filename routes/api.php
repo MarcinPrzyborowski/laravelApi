@@ -18,17 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
+    'middleware' => 'api'
 ], function ($router) {
-    Route::post('login', ['as' => 'login','AuthController@login']);
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+    Route::post('login', 'Api\AuthController@login');
+    Route::post('logout', 'Api\AuthController@logout');
+    Route::post('refresh', 'Api\AuthController@refresh');
+    Route::post('me', 'Api\AuthController@me');
 });
 
-Route::get('/publishers', 'Api\Publishers@getAll')->middleware('auth:api');
-
-Route::get('/magazines/{id}', 'Api\Magazines@get')->middleware('auth:api');
-
-Route::any('/magazines/search', 'Api\Magazines@search')->middleware('auth:api,request.json');
+Route::get('/publishers', 'Api\PublisherController@getAll')->middleware('auth:api');
+Route::get('/magazines/{id}', 'Api\MagazineController@get')->middleware('auth:api');
+Route::any('/magazines/search', 'Api\MagazineController@search')->middleware('auth:api', 'request.json');

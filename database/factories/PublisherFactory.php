@@ -1,7 +1,7 @@
 <?php
 
-$factory->define(\App\Publisher::class, function (\Faker\Generator $faker) {
+$factory->define(\App\Models\Publisher::class, function (\Faker\Generator $faker) {
     return [
-        'name' => $faker->name
+        'name' => $faker->name,
     ];
 });
